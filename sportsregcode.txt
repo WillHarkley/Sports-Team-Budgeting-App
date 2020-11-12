@@ -1,0 +1,63 @@
+Public Class frmSportsRegistration
+    'Name: Sports Registration
+    'Purpose: To record the financial budget in a sports program
+    'Programmer: William Harkley
+
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        txtTotal.Text = ""
+        radSoccer.Checked = False
+        radFootball.Checked = False
+        radBasketball.Checked = False
+    End Sub
+
+    Private Sub btnCalculate_Click(sender As Object, e As EventArgs) Handles btnCalculate.Click
+        'Declare Variables
+        Dim intplayer As Integer
+        Dim intsportcost As Integer
+        Dim inttotalcost As Integer
+
+        'intplayer = txtPot.Text
+
+        If txtPot.Text = "" Then
+            MessageBox.Show("Please enter the number of players")
+            txtPot.Focus()
+        End If
+
+        'SetVariable
+        Integer.TryParse(txtPot.Text, intplayer)
+
+        Select Case True
+            Case radFootball.Checked
+                intsportcost = 350
+            Case radSoccer.Checked
+                intsportcost = 200
+            Case radBasketball.Checked
+                intsportcost = 400
+            Case Else
+                MessageBox.Show("Please enter sports value")
+                Return
+        End Select
+
+
+
+        'Calculation
+
+        'total cost = cost of the sport * number of players
+
+        inttotalcost = intsportcost * intplayer
+
+        txtTotal.Text = inttotalcost
+
+
+        'Display
+
+        txtTotal.Text = FormatCurrency(inttotalcost)
+
+    End Sub
+
+    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        Me.Close()
+    End Sub
+
+End Class
